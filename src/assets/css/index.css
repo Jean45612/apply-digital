@@ -138,6 +138,18 @@ body {
   cursor: pointer;
 }
 
+.pagination__container {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+.Mui-selected {
+  background-color: #1890ff!important;
+  color: white!important;
+}
+
 @media (min-width: 960px) {
   .article__new {
     width: 46%;

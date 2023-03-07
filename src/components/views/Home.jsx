@@ -4,6 +4,7 @@ import angularLogo from "../../assets/images/angular-logo.png";
 import reactLogo from "../../assets/images/react-logo.png";
 import vueLogo from "../../assets/images/vue-logo.png";
 import { ArticleNew } from "../common/ArticleNew";
+import { Pagination } from "@mui/material";
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,6 +48,10 @@ const Home = () => {
     setNewsCategory(e.target.value);
     localStorage.setItem("newsCategory", e.target.value);
   };
+
+  const onChangePagination = (e, p) => {
+    setCurrentPage(p);
+  }
 
   const onClickFave = (article) => {
     let myFavesNews = JSON.parse(localStorage.getItem("myFavesNews"));
@@ -107,6 +112,10 @@ const Home = () => {
           );
         })}
       </section>
+      <div className="pagination__container">
+        <Pagination count={nPages} variant="outlined" shape="rounded" onChange={onChangePagination}/>
+      </div>
+      
     </>
   );
 };
