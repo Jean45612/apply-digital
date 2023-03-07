@@ -28,7 +28,10 @@ const Home = () => {
 
         articles.map((a) => {
           if (myFavesNews) {
-            return myFavesNews.includes(a.objectID) ? a.isFave = true : a.isFave = false;
+            if (myFavesNews.find((n) => n.objectID === a.objectID)) {
+              return (a.isFave = true);
+            }
+            return (a.isFave = false);
           }
 
           return (a.isFave = false);
@@ -45,13 +48,13 @@ const Home = () => {
     localStorage.setItem("newsCategory", e.target.value);
   };
 
-  const onClickFave = (objectID) => {
+  const onClickFave = (article) => {
     let myFavesNews = JSON.parse(localStorage.getItem("myFavesNews"));
 
     const updateData = (isFave) => {
       setData(
         data.map((d) => {
-          if (d.objectID === objectID) {
+          if (d.objectID === article.objectID) {
             return { ...d, isFave: isFave };
           } else {
             return d;
@@ -59,18 +62,22 @@ const Home = () => {
         })
       );
     };
-    
 
     if (!myFavesNews) {
       myFavesNews = [];
-      myFavesNews.push(objectID);
+      article.isFave = true;
+      myFavesNews.push(article);
       updateData(true);
     } else {
-      if (myFavesNews.find((n) => n === objectID)) {
-        myFavesNews.splice(myFavesNews.indexOf(objectID), 1);
+      if (myFavesNews.find((n) => n.objectID === article.objectID)) {
+        article.isFave = false;
+        myFavesNews = myFavesNews.filter(function (el) {
+          return el.objectID !== article.objectID;
+        });
         updateData(false);
       } else {
-        myFavesNews.push(objectID);
+        article.isFave = true;
+        myFavesNews.push(article);
         updateData(true);
       }
     }

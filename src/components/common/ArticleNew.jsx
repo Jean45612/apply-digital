@@ -30,7 +30,7 @@ export const ArticleNew = (props) => {
         <p className="article_new__container__description">{props.article.story_title}</p>
       </div>
       <div className="article__new__heart">
-        <img src={props.article.isFave ? fullHeartImg : emptyHeartImg} alt="heart" className="article__new__heart__img" onClick={()=> props.onClickFave(props.article.objectID)}/>
+        <img src={props.article.isFave ? fullHeartImg : emptyHeartImg} alt="heart" className="article__new__heart__img" onClick={()=> props.onClickFave(props.article)}/>
       </div>
     </article>
   );
