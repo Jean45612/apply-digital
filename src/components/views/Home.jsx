@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import newsServices from "../../services/news-service";
-import angularLogo from "../../assets/images/angular-logo.png";
-import reactLogo from "../../assets/images/react-logo.png";
-import vueLogo from "../../assets/images/vue-logo.png";
 import { ArticleNew } from "../common/ArticleNew";
 import { Pagination } from "@mui/material";
 
